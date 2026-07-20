@@ -3,233 +3,90 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>نتائج الطالب</title>
+<title>تسجيل دخول الطالب</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
-
-body{
-    background:#f4f6f9;
-}
-
-/* صفحة تسجيل الدخول */
-.login-box{
-    width:90%;
-    max-width:420px;
-    background:#fff;
-    margin:70px auto;
-    padding:30px;
-    border-radius:15px;
-    text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,.15);
-}
-
-.logo{
-    width:100px;
-    margin-bottom:20px;
-}
-
-.login-box h2{
-    margin-bottom:20px;
-    color:#333;
-}
-
-.login-box input{
-    width:100%;
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:8px;
+    .logo{
+    width:120px;
     margin-bottom:15px;
-    font-size:16px;
+    }
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f0f2f5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
 }
 
-.login-box button{
-    width:100%;
+.box{
+    background:#fff;
+    width:95%;
+    max-width:1100px;
+    padding:50px;
+    border-radius:30px;
+    box-shadow:0 10px 40px rgba(0,0,0,.12);
+    text-align:center;
+}
+
+input{
+    width:90%;
     padding:12px;
-    background:#007bff;
-    color:white;
-    border:none;
-    border-radius:8px;
-    font-size:16px;
+    font-size:18px;
+    margin:15px 0;
+}
+
+button{
+    padding:12px 25px;
+    font-size:18px;
     cursor:pointer;
 }
 
-header{
-    background:white;
-    padding:20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    box-shadow:0 3px 10px rgba(0,0,0,.1);
+#page2{
+    display:none;
 }
 
-.container{
-    width:95%;
-    max-width:1200px;
-    margin:30px auto;
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
-}
-
-.right-card,.left-card{
-    background:white;
-    border-radius:15px;
-    padding:25px;
-    box-shadow:0 5px 20px rgba(0,0,0,.1);
-}
-
-.right-card{
-    flex:1;
-    min-width:280px;
-    text-align:center;
-}
-
-.left-card{
-    flex:2;
-    min-width:450px;
-}
-
-.student{
-    width:180px;
-    border-radius:50%;
-    margin-bottom:15px;
-}
-
-table{
+img{
+    display:block;
     width:100%;
-    border-collapse:collapse;
-}
-
-th,td{
-    padding:12px;
-    border-bottom:1px solid #ddd;
-    text-align:center;
-}
-
-th{
-    background:#007bff;
-    color:white;
+    margin:auto;
+    border-radius:10px;
 }
 </style>
-
 </head>
+
 <body>
 
-<!-- صفحة تسجيل الدخول -->
-<div id="loginPage" class="login-box">
+<div class="box" id="page1">
+    <img src="شعار_وزارة_التربية_العراقية.svg" alt="" class="logo">
+<h2>ادخل الرمز السري الخاص بالطالب</h2>
 
-    <img src="logo.svg" class="logo">
+<input id="pass" type="password">
 
-    <h2>ادخل الرمز السري الخاص بالطالب</h2>
+<br>
 
-    <input type="password" id="password" placeholder="الرمز السري">
+<button onclick="login()">دخول</button>
 
-    <button onclick="login()">دخول</button>
-
-    <p id="error"></p>
-
+<p id="msg" style="color:red;"></p>
 </div>
 
-<!-- الصفحة الرئيسية -->
-<div id="homePage" style="display:none;">
+<div class="box" id="page2">
+<h2>مرحبًا بالطالب</h2>
 
-<header>
-
-<h1>مرحبًا بالطالب</h1>
-
-<button onclick="logout()">تسجيل الخروج</button>
-
-</header>
-
-<div class="container">
-
-<div class="right-card">
-
-<img src="student.png" class="student">
-
-<h2>اسم الطالب</h2>
-
-<p>الصف: السادس الإعدادي</p>
-
-<p>الرقم الامتحاني: 123456</p>
-
-</div>
-
-<div class="left-card">
-
-<h2>النتائج</h2>
-
-<table>
-
-<tr>
-<th>المادة</th>
-<th>الدرجة</th>
-</tr>
-
-<tr>
-<td>الرياضيات</td>
-<td>95</td>
-</tr>
-
-<tr>
-<td>اللغة العربية</td>
-<td>90</td>
-</tr>
-
-<tr>
-<td>الإنكليزية</td>
-<td>88</td>
-</tr>
-
-<tr>
-<td>الفيزياء</td>
-<td>91</td>
-</tr>
-
-<tr>
-<td>الكيمياء</td>
-<td>93</td>
-</tr>
-
-<tr>
-<td>الأحياء</td>
-<td>96</td>
-</tr>
-
-</table>
-
-</div>
-
-</div>
-
+<img src="Picsart_26-07-18_15-17-25-129.jpg" alt="الصورة">
 </div>
 
 <script>
-const correctPassword = "123456"; // غيّر الرمز السري هنا
+function login(){
+    var password=document.getElementById("pass").value;
 
-function login() {
-    const password = document.getElementById("password").value;
-
-    if (password === correctPassword) {
-        document.getElementById("loginPage").style.display = "none";
-        document.getElementById("homePage").style.display = "block";
-    } else {
-        document.getElementById("error").innerHTML = "الرمز السري غير صحيح";
-        document.getElementById("error").style.color = "red";
+    if(password=="281424168"){
+        document.getElementById("page1").style.display="none";
+        document.getElementById("page2").style.display="block";
+    }else{
+        document.getElementById("msg").innerHTML="الرمز السري غير صحيح";
     }
-}
-
-function logout() {
-    document.getElementById("homePage").style.display = "none";
-    document.getElementById("loginPage").style.display = "block";
-    document.getElementById("password").value = "";
-    document.getElementById("error").innerHTML = "";
 }
 </script>
 
